@@ -40,25 +40,17 @@ def linear_regression_lab():
     r_squared = 1 - (ss_res / ss_tot) #Коэффициент детерминации
     print(f"Коэффициент детерминации R^2 = {r_squared:.4f}")
 
-    # Дополнительная выборка
-    m = int(input("Введите объем дополнительной выборки m: "))
-    X_extra = np.arange(n + 1, n + m + 1)#Генерация новых значений X
-    Y_extra_true = a * X_extra + b + np.random.normal(0, sigma, m)#Генерация истинных (наблюдаемых) значений
-    Y_extra_pred = a_star * X_extra + b_star#Генерация истинных (наблюдаемых) значений
-
     # График первой части
-    plt.figure(figsize=(10, 6))
-    plt.scatter(X, Y, color='blue', label='Обучающая выборка')
-    plt.scatter(X_extra, Y_extra_true, color='green', label='Доп. выборка (реальность)')
-    plt.plot(np.append(X, X_extra), a_star * np.append(X, X_extra) + b_star,
-             color='red', label='Линия регрессии (прогноз)')
-    plt.title("Линейная регрессия (фиксированный X)")
-    plt.legend()
-    plt.grid(True)
-    plt.show(block=False) # Окно открылось, код идет дальше
-    plt.pause(0.1)        # Даем системе время на отрисовку
-    input("Нажмите Enter в консоли, чтобы продолжить...")
-    plt.close()           # Закрываем первое окно сами и идем ко второй части
+    # plt.figure(figsize=(10, 6))
+    # plt.scatter(X, Y, color='blue', label='Обучающая выборка')
+    # plt.plot(X, Y_pred, color='red', label='Линия регрессии')
+    # plt.title("Линейная регрессия (фиксированный X)")
+    # plt.legend()
+    # plt.grid(True)
+    # plt.show(block=False)
+    # plt.pause(0.1)
+    # input("Нажмите Enter в консоли, чтобы продолжить...")
+    # plt.close()
 
     # """--- Часть 2""": Случайные x на отрезке [t1, t2] ---
     print("\n--- Часть 2: Случайные x на отрезке [t1, t2] ---")
@@ -73,17 +65,17 @@ def linear_regression_lab():
     Y_rand_pred = a_star_rand * X_rand + b_star_rand
     r2_rand = 1 - (np.sum((Y_rand - Y_rand_pred) ** 2) / np.sum((Y_rand - np.mean(Y_rand)) ** 2))
 
-    print(f"Оцененные коэффициенты (rand): a* = {a_star_rand:.4f}, b* = {b_star_rand:.4f}")
-    print(f"R^2 (rand) = {r2_rand:.4f}")
+    print(f"Оцененные коэффициенты: a* = {a_star_rand:.4f}, b* = {b_star_rand:.4f}")
+    print(f"R^2 = {r2_rand:.4f}")
 
-    plt.figure(figsize=(10, 6))
-    plt.scatter(X_rand, Y_rand, color='purple', label='Случайная выборка')
-    x_range = np.linspace(t1, t2, 100)
-    plt.plot(x_range, a_star_rand * x_range + b_star_rand, color='orange', label='Линия регрессии')
-    plt.title("Линейная регрессия (случайный X)")
-    plt.legend()
-    plt.grid(True)
-    plt.show()
+    # plt.figure(figsize=(10, 6))
+    # plt.scatter(X_rand, Y_rand, color='purple', label='Случайная выборка')
+    # x_range = np.linspace(t1, t2, 100)
+    # plt.plot(x_range, a_star_rand * x_range + b_star_rand, color='orange', label='Линия регрессии')
+    # plt.title("Линейная регрессия (случайный X)")
+    # plt.legend()
+    # plt.grid(True)
+    # plt.show()
 
 if __name__ == "__main__":
     linear_regression_lab()
