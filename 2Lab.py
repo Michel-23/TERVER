@@ -3,16 +3,22 @@ import matplotlib.pyplot as plt
 
 def linear_regression_lab():
 
-    print("--- Часть 1: Фиксированные x (1, 2, ..., n) ---")
+    # print("--- Часть 1: Фиксированные x (1, 2, ..., n) ---")
+
     a = float(input("Введите коэффициент a: "))
     b = float(input("Введите коэффициент b: "))
     sigma = float(input("Введите среднеквадратичное отклонение sigma: "))
     n = int(input("Введите объем выборки n: "))
 
-    X = np.arange(1, n + 1)#Создание массива X
-    y_true = a * X + b #Вычисление истинных значений (без шума)
-    noise = np.random.normal(0, sigma, n) #Генерация шума
-    Y = y_true + noise #Формирование наблюдаемых значений (добавдяем шум)
+    # a = 2
+    # b = 1
+    # sigma = 10
+    # n = 100
+
+    # X = np.arange(1, n + 1)#Создание массива X
+    # y_true = a * X + b #Вычисление истинных значений (без шума)
+    # noise = np.random.normal(0, sigma, n) #Генерация шума
+    # Y = y_true + noise #Формирование наблюдаемых значений (добавдяем шум)
 
     # Вычисление коэффициентов (метод Крамера)
     def estimate_coefficients_cramer(x, y):
@@ -30,15 +36,15 @@ def linear_regression_lab():
         b_star = (sum_x2 * sum_y - sum_x * sum_xy) / det
         return a_star, b_star
 
-    a_star, b_star = estimate_coefficients_cramer(X, Y)
-    print(f"Оцененные коэффициенты: a* = {a_star:.4f}, b* = {b_star:.4f}")
+    # a_star, b_star = estimate_coefficients_cramer(X, Y)
+    # print(f"Оцененные коэффициенты: a* = {a_star:.4f}, b* = {b_star:.4f}")
 
-    # R^2
-    Y_pred = a_star * X + b_star #Предсказанные значения
-    ss_res = np.sum((Y - Y_pred) ** 2) #Остаточная сумма квадратов
-    ss_tot = np.sum((Y - np.mean(Y)) ** 2) #Общая сумма квадратов
-    r_squared = 1 - (ss_res / ss_tot) #Коэффициент детерминации
-    print(f"Коэффициент детерминации R^2 = {r_squared:.4f}")
+    # # R^2
+    # Y_pred = a_star * X + b_star #Предсказанные значения
+    # ss_res = np.sum((Y - Y_pred) ** 2) #Остаточная сумма квадратов
+    # ss_tot = np.sum((Y - np.mean(Y)) ** 2) #Общая сумма квадратов
+    # r_squared = 1 - (ss_res / ss_tot) #Коэффициент детерминации
+    # print(f"Коэффициент детерминации R^2 = {r_squared:.4f}")
 
     # График первой части
     # plt.figure(figsize=(10, 6))
@@ -53,6 +59,7 @@ def linear_regression_lab():
     # plt.close()
 
     # """--- Часть 2""": Случайные x на отрезке [t1, t2] ---
+
     print("\n--- Часть 2: Случайные x на отрезке [t1, t2] ---")
     t1 = float(input("Введите начало отрезка t1: "))
     t2 = float(input("Введите конец отрезка t2: "))
